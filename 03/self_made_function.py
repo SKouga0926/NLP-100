@@ -15,7 +15,7 @@ def split_into_words(string):
         if (right_ptr >= size_of_string):
             break
 
-        if (string[right_ptr] == " " or string[right_ptr] == ","):
+        if (string[right_ptr] == " " or string[right_ptr] == "," or string[right_ptr] == "."):
 
             for j in range(left_ptr, right_ptr):
                 word = word + string[j]
@@ -25,8 +25,10 @@ def split_into_words(string):
             word = ""
 
             while True:
-                if (string[right_ptr] == " " or string[right_ptr] == ","):
+                if (string[right_ptr] == " " or string[right_ptr] == "," or string[right_ptr] == "."):
                     right_ptr += 1
+                    if (right_ptr >= size_of_string):
+                        break
                 else : 
                     left_ptr = right_ptr
                     break
