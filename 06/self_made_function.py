@@ -107,13 +107,16 @@ def n_gram_char(n, string):
 
     return n_gram_char_list
 
-    
-string = "I am an NLPer"
-word_list = split_into_words(string)
-print(word_list)
+string1 = "paraparaparadise"
+string2 = "paragraph"
 
-n_gram_word_list = n_gram_word(3, string)
-print(n_gram_word_list)
+X = frozenset(n_gram_char(2, string1))
+Y = frozenset(n_gram_char(2, string2))
 
-n_gram_char_list = n_gram_char(5, string)
-print(n_gram_char_list)
+union_set = X | Y
+difference_set = X - Y
+intersection_set = X & Y
+
+print("union =", union_set)
+print("difference = ", difference_set)
+print("intersection = ", intersection_set)
