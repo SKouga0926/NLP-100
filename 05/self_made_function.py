@@ -48,18 +48,35 @@ def split_into_words(string):
 
     return word_list
 
-def bi_gram_word(string):
+def n_gram_word(n, string):
 
     word_list = split_into_words(string)
-    
     size_word_list = len(word_list)
-    bi_gram_list = []
 
-    for i in range(size_word_list - 1):
+    temp_list1 = []
+    temp_list2 = []
 
-        bi_gram_list.append([word_list[i], word_list[i + 1]])
-        
-    return bi_gram_list
+    start_index = 0
+
+    while True:
+
+        for i in range(start_index, start_index + n):
+            if (start_index + n - 1 == size_word_list):
+                break
+
+            temp_list1.append(word_list[i])
+
+        if (start_index + n - 1 == size_word_list):
+            break 
+
+        temp_list2.append(temp_list1)
+        temp_list1 = []
+
+        start_index = start_index + 1
+
+    n_gram_word_list = temp_list2
+
+    return n_gram_word_list
 
 def bi_gram_char(string):
 
@@ -71,12 +88,42 @@ def bi_gram_char(string):
 
     return bi_gram_list
 
+def n_gram_char(n, string):
+
+    size_string = len(string)
+
+    temp_char1 = ""
+    temp_list1 = []
+
+    start_index = 0
+
+    while True:
+
+        for i in range(start_index, start_index + n):
+            if (start_index + n - 1 == size_string):
+                break
+
+            temp_char1 += string[i]
+
+        if (start_index + n - 1 == size_string):
+            break 
+
+        temp_list1.append(temp_char1)
+        temp_char1 = ""
+
+        start_index = start_index + 1
+
+    n_gram_char_list = temp_list1
+
+    return n_gram_char_list
+
+    
 string = "I am an NLPer"
 word_list = split_into_words(string)
 print(word_list)
 
-bi_gram_list = bi_gram_word(string)
-print(bi_gram_list)
+n_gram_word_list = n_gram_word(3, string)
+print(n_gram_word_list)
 
-bi_gram_list = bi_gram_char(string)
-print(bi_gram_list)
+n_gram_char_list = n_gram_char(5, string)
+print(n_gram_char_list)
